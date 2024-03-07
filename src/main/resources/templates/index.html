@@ -7,10 +7,34 @@
     <title>Title</title>
 </head>
 <body>
-    <h1 th:text="${string}"></h1>
+
+<!--    <h1 th:text="${__#{user.hello}__}"></h1>-->
+
+    <h2 th:text="${string}"></h2>
 
     <ul th:each="item : ${list}">
         <li th:text="${item}"></li>
     </ul>
-</body>
+
+
+    <p>Доступ за індексом: <span th:text="${list[1]}"></span>  </p>
+
+    <div>Доступ до елемнтів мапи: <p th:text="${map.Kyiv}" ></p></div>
+
+    <div th:object="${user}">
+        <h2>User info </h2>
+        <span>Name : </span><span th:text="*{name}"></span>
+        <span>Age : </span><span th:text="*{age}"></span>
+    </div>
+
+    <div>Посилання :
+        <a th:href="@{https://javarush.com/}">Go to other page</a>
+    </div>
+
+    <p th:id="|Concat${map.Vienna}|"></p>
+    <span>Expression inlining [[${user.name}]]</span>
+
+    <p th:if="${user != null}">User isn't null</p>
+    <p th:unless="${user.getAge() > 18}">User isn't adult yet</p>
+    </body>
 </html>
